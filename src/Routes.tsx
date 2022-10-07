@@ -8,11 +8,16 @@ interface RoutesInterface {
 
 const Routes = ({ children }: RoutesInterface) => {
 
-    const { path } = useContext(PathContext);
+    const { path, setPath } = useContext(PathContext);
 
     useEffect(() => {
-        history.pushState("", "", path);
-    }, [path])
+        const handlePopState = (e: PopStateEvent) => {
+            setPath(e.state.data || "/");
+        }
+        window.addEventListener("popstate", handlePopState);
+        return () => window.removeEventListener("popstate", handlePopState);
+    }, [])
+
 
     let element = null;
 

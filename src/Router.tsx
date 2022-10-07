@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import PathProvider from './store/path';
+import React, { ReactNode, useContext, useEffect } from "react";
+import PathProvider, { PathContext } from './store/path';
 
 interface RouterInterface {
     children: ReactNode | ReactNode[];
